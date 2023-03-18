@@ -45,7 +45,7 @@ app = MyFlaskApp(__name__, static_folder='frontend/build', static_url_path='/')
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 
-def setColor(r, g, b, brightness=0.5, speed=None):
+def setColor(r, g, b, brightness=0.25, speed=None):
 	global crntColors
 	setPixels(r, g, b, brightness)
 	unicorn.show()
@@ -62,7 +62,7 @@ def setColor(r, g, b, brightness=0.5, speed=None):
 			sleep(speed)
 
 
-def setPixels(r, g, b, brightness=0.5):
+def setPixels(r, g, b, brightness=0.25):
 	global globalBrightness, globalBlue, globalGreen, globalRed
 
 	globalRed = r
@@ -230,7 +230,7 @@ def availableCall():
 	globalStatus = 'Available'
 	globalLastCalledApi = '/api/available'
 	switchOff()
-	blinkThread = threading.Thread(target=setColor, args=(0, 144, 0))
+	blinkThread = threading.Thread(target=setColor, args=(0, 128, 0))
 	blinkThread.do_run = True
 	blinkThread.start()
 	setTimestamp()
@@ -243,7 +243,7 @@ def busyCall():
 	globalStatus = 'Busy'
 	globalLastCalledApi = '/api/busy'
 	switchOff()
-	blinkThread = threading.Thread(target=setColor, args=(179, 0, 0))
+	blinkThread = threading.Thread(target=setColor, args=(128, 0, 0))
 	blinkThread.do_run = True
 	blinkThread.start()
 	setTimestamp()
@@ -256,7 +256,7 @@ def awayCall():
 	globalStatus = 'Away'
 	globalLastCalledApi = '/api/away'
 	switchOff()
-	blinkThread = threading.Thread(target=setColor, args=(255, 191, 0))
+	blinkThread = threading.Thread(target=setColor, args=(128, 0, 64))
 	blinkThread.do_run = True
 	blinkThread.start()
 	setTimestamp()
@@ -315,7 +315,7 @@ def not_found(error):
 
 def startupRainbow():
 	global blinkThread
-	blinkThread = threading.Thread(target=displayRainbow, args=(1, 0.1, 1))
+	blinkThread = threading.Thread(target=displayRainbow, args=(0.25, 0.1, 1))
 	blinkThread.do_run = True
 	blinkThread.start()
 
