@@ -45,7 +45,7 @@ app = MyFlaskApp(__name__, static_folder='frontend/build', static_url_path='/')
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 
-def setColor(r, g, b, brightness=0.25, speed=None):
+def setColor(r, g, b, brightness=0.15, speed=None):
 	global crntColors
 	setPixels(r, g, b, brightness)
 	unicorn.show()
@@ -62,7 +62,7 @@ def setColor(r, g, b, brightness=0.25, speed=None):
 			sleep(speed)
 
 
-def setPixels(r, g, b, brightness=0.25):
+def setPixels(r, g, b, brightness=0.15):
 	global globalBrightness, globalBlue, globalGreen, globalRed
 
 	globalRed = r
